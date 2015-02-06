@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="ImageS3 : Simple storage service for images.">
+    <meta name="description" content="ImageS3 : Simple image hosting service for developers.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,10 +19,11 @@
           <a id="forkme_banner" href="https://github.com/images3/images3-website">View on GitHub</a>
 
           <h1 id="project_title">ImageS3</h1>
-          <h2 id="project_tagline">Simple storage service for images.</h2>
+          <h2 id="project_tagline">Simple image hosting service for developers.</h2>
 
             <section id="downloads">
-              
+              <a class="zip_download_link" href="https://github.com/images3/images3-website/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/images3/images3-website/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
@@ -30,10 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a id="images3" class="anchor" href="#images3" aria-hidden="true"><span class="octicon octicon-link"></span></a>ImageS3</h1>
-
-<p>ImageS3 is a free and open image hosting service for developers. It is designed to store, resize and manage images for all your web and mobile apps in one place.</p>
+        <p>ImageS3 is a free and open image hosting service for developers. It is designed to store, resize and manage images for all your web and mobile apps in one place.</p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -49,6 +47,107 @@
 <p><a href="http://i.imgur.com/liGhBmN.png"><img src="http://i.imgur.com/liGhBmNl.png" height="226" width="610"></a></p>
 </li>
 </ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="installing-requirements" class="anchor" href="#installing-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Requirements</h3>
+
+<ul>
+<li><p><strong>Java</strong> - ImageS3 developed in Java. You can download the latest JRE7 build from <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html">here</a>.</p></li>
+<li><p><strong>Play Framework</strong> - Play Framework is a lightweight and highly-scalable application server. ImageS3 released with Play as a standalone package which lets you don't need to download different jar files separately. Follow this <a href="https://www.playframework.com/documentation/2.3.x/Installing">instruction</a> to install 2.3.x Play Framework.</p></li>
+<li><p><strong>MongoDB</strong> - MongoDB is a leading NoSQL database with amazing <a href="http://www.mongodb.org/">features</a>. ImageS3 uses MongoDB to store image metadata and other objects information. Follow this <a href="http://docs.mongodb.org/manual/installation/">instruction</a> to install the latest MongoDB.</p></li>
+<li><p><strong>Amazon S3</strong> -- Amazon S3 is a secure, durable and highly-scalable cloud storage service. ImageS3 uses Amazon S3 to store image files. If you already have Amazon AWS account, you can skip this, otherwise, sign up one at <a href="http://aws.amazon.com/s3/">here</a>.</p></li>
+</ul>
+
+<h3>
+<a id="installing-images3" class="anchor" href="#installing-images3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing ImageS3</h3>
+
+<p>Download and unzip the compressed package:</p>
+
+<pre><code>$ wget https://github.com/gogoup/images3-dist/raw/master/images3-play-latest.zip
+$ unzip images3-play-latest.zip
+</code></pre>
+
+<p>Create default location for image files.</p>
+
+<pre><code>$ mkdir -p /images3/images
+</code></pre>
+
+<h2>
+<a id="configuring-images3" class="anchor" href="#configuring-images3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring ImageS3</h2>
+
+<p>All the configuration files are located in image-play-[version]/conf.</p>
+
+<p>You need to set the following properties before running ImageS3:</p>
+
+<ul>
+<li>
+<strong>mongodb.properties</strong>
+
+<ul>
+<li>
+<em>'mongodb.url'</em> -- MongoDB server IP address.</li>
+<li>
+<em>'mongodb.port'</em> -- MongoDB server port number. 27017 is the default number.</li>
+<li>
+<em>'mongodb.username'</em> -- Username of MongoDB connection. Leave this value empty, if you don't setup username on MongoDB.</li>
+<li>
+<em>'mongodb.password'</em> -- Password of MongoDB connection. Leave this value empty, if you don't setup password on MongoDB.</li>
+</ul>
+</li>
+</ul>
+
+<p>If you have a different location for image files, then setup the following configurations.</p>
+
+<ul>
+<li>
+<p><strong>imagecontent.properties</strong></p>
+
+<ul>
+<li>
+<em>'imagecontent.download.dir'</em> -- A place used to store images uploaded from clients or download from Amazon S3. Make sure the directory exists.</li>
+</ul>
+</li>
+<li>
+<p><strong>imageprocessor.properties</strong></p>
+
+<ul>
+<li>
+<em>'image.processing.tempdir'</em> -- A place used to store resized images. Make sure the directory exists.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="running-images3" class="anchor" href="#running-images3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running ImageS3</h2>
+
+<p>Enable execution persmissions:</p>
+
+<pre><code>$ chmod +x images3-play-[version]/bin/*
+</code></pre>
+
+<p>Use the following command to run ImageS3:</p>
+
+<pre><code>$ ./images3-play-[version]/bin/images3-play
+</code></pre>
+
+<p>And then, open <a href="http://localhost:9000">http://localhost:9000</a> in your browser, you will see the admin tool:</p>
+
+<h1>
+<a id="" class="anchor" href="#" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://i.imgur.com/RcY9QQa.png"><img src="http://i.imgur.com/RcY9QQal.png" width="610"></a>
+</h1>
+
+<p>You can also run ImageS3 on different port, for example 8080:</p>
+
+<pre><code>$ ./images3-play-[version]/bin/images3-play -Dhttp.port=8080
+</code></pre>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Use</h2>
+
+<p>Checking the <strong><a href="https://github.com/images3/images3-play/wiki">wiki</a></strong> page.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
